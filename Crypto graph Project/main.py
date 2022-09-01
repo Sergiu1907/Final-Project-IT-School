@@ -1,22 +1,23 @@
 from crypto import Crypto_APP
 import datetime  as dt
 import os
+from fpdf import FPDF
 
-symbol = "BTC"  
-currency = "EUR"
+symbol ="btc"  
+currency = "BUSD"
 interval = "1d"  
-dt_start = str (int(dt.datetime(2021,8,13).timestamp()*1000))
-dt_end = str (int(dt.datetime(2022,8,25).timestamp()*1000))
+dt_start = str (int(dt.datetime(2021,8,10).timestamp()*1000))
+dt_end = str (int(dt.datetime(2022,8,29).timestamp()*1000))
 
 if not os.path.exists("images"):
     os.mkdir("images")
 
-coin = Crypto_APP(symbol, currency, dt_start, dt_end, interval)
+coin = Crypto_APP(symbol.upper(), currency.upper(), dt_start, dt_end, interval)
 coin.get_crypto_content()
-coin.get_plot()
+coin.get_plot_price()
+coin.get_plot_volume()
+coin.get_pdf_raport()
 
-# for i in coin.get_crypto_content():
-#     print(i)
 
 
 
