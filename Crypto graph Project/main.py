@@ -6,8 +6,8 @@ from fpdf import FPDF
 symbol ="btc"  
 currency = "BUSD"
 interval = "1d"  
-dt_start = str (int(dt.datetime(2021,8,10).timestamp()*1000))
-dt_end = str (int(dt.datetime(2022,8,29).timestamp()*1000))
+dt_start = str (int(dt.datetime(2021,8,1).timestamp()*1000))
+dt_end = str (int(dt.datetime(2022,8,1).timestamp()*1000))
 
 if not os.path.exists("images"):
     os.mkdir("images")
