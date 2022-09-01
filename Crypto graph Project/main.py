@@ -36,6 +36,7 @@ coin.get_pdf_raport()
 
 
 
+
 # r = requests.get(f'{base_URL}/klines?symbol={symbol}{currency}&interval={interval}&startTime={dt_Start}&endTime={dt_End}&limit=1000')
 # content = json.loads(r.content)
 
