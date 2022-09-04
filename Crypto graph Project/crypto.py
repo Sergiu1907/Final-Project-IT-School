@@ -36,7 +36,7 @@ class Crypto_APP:
         generate_date = get_date.strftime('%d-%m-%Y %H:%M:%S' ) 
         fig = px.line(
             x = self.list_close_time  , y = self.list_close_price, labels= {"x":"Date", 'y':f'{self.currency}'},
-            title = f'Crypto raport: {self.symbol}-{self.currency} {generate_date}'
+            title = f'Crypto report: {self.symbol}-{self.currency} {generate_date}'
             )
         return fig.write_image (self.get_f_string('Price'))
 
@@ -51,14 +51,14 @@ class Crypto_APP:
         for i in self.price_list:
             coin_price.append(i.close_price)
         max_price = max(coin_price)
-        return max_price
+        return format(max_price, ',.2f')
 
     def get_min_price(self):
         coin_price = []
         for i in self.price_list:
             coin_price.append(i.close_price)
         min_price = min(coin_price)
-        return min_price
+        return format(min_price, ',.2f')
 
     def get_plot_volume(self):
         for i in self.price_list:
@@ -66,13 +66,13 @@ class Crypto_APP:
             self.list_trades.append(i.trades)
         fig = px.bar (
             x = self.list_close_time  , y = self.list_volume, labels= {"x":"Date", 'y':'Volume'},
-            title = f'Crypto volume raport: {self.symbol}-{self.currency}, Total volume: {self.get_sum_volume_trades(self.list_volume)}'
+            title = f'Crypto volume report: {self.symbol}-{self.currency}, Total volume: {self.get_sum_volume_trades(self.list_volume)}'
             )
         return fig.write_image (self.get_f_string('Volume'))
 
     def get_sum_volume_trades(self,list):
         sum_volume_trades =  sum (list)
-        return sum_volume_trades
+        return format(sum_volume_trades, ',.2f')
 
     def get_f_string(self, name):
         string = f'images\{name}_{self.symbol}_{self.currency} {self.get_date(self.dt_start)}-{self.get_date(self.dt_end)}.png'
@@ -88,7 +88,7 @@ class Crypto_APP:
         pdf.text(20,260,f'Total trades: {self.get_sum_volume_trades(self.list_trades)}')
         pdf.image(self.get_f_string("Price"),10,0,160)
         pdf.image(self.get_f_string("Volume"),10,130,160)
-        pdf.output(f'Raport {self.symbol}{self.currency} {self.get_date(self.dt_start)}-{self.get_date(self.dt_end)}')
+        pdf.output(f'Report {self.symbol}{self.currency} {self.get_date(self.dt_start)}-{self.get_date(self.dt_end)}.pdf')
 
 
 class Coin:
